@@ -1,0 +1,82 @@
+[
+  {
+    "id": "68b970498a31189a2ed2d08d",
+    "title": "Archotel",
+    "location": "Avenue Cheikh Anta Diop, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.246Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d0dd",
+    "title": "Cafe de Rome",
+    "location": "Place de l'Indépendance, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.872Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d098",
+    "title": "Hotel Azalai",
+    "location": "11 Rue de Thiong, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.331Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d0a4",
+    "title": "Hotel Fleur de Lys",
+    "location": "Rue de la République, Plateau, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.417Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d0ba",
+    "title": "Hotel Miramar",
+    "location": "Route de la Corniche Ouest, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.589Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d0c6",
+    "title": "Hotel Nina",
+    "location": "Avenue Cheikh Anta Diop, Fann, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.683Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d0ae",
+    "title": "Hotel Novotel",
+    "location": "Avenue Abdoulaye Fadiga, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.501Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d0e7",
+    "title": "Le Sokhamon",
+    "location": "Rue El Hadji Mbaye Gueye, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.957Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d0d0",
+    "title": "Radisson Blu",
+    "location": "Route de la Corniche Ouest, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.786Z"
+  },
+  {
+    "id": "68b970498a31189a2ed2d080",
+    "title": "Terroubi",
+    "location": "Route de la Corniche Ouest, Dakar",
+    "region": "Dakar",
+    "isActive": true,
+    "createdAt": "2025-09-04T10:56:09.122Z"
+  }
+]
