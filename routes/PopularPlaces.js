@@ -1,7 +1,7 @@
 // routes/popularPlaces.js - CORRIGÉ
 const express = require('express');
 const router = express.Router();
-const popularPlaceController = require('../controllers/PopularPlaceController');
+const popularPlaceController = require('../controllers/popularPlaceController');
 const { verifyToken, verifyTokenForUpload } = require('../middlewares/jwt_token');
 const { checkRole } = require('../middlewares/checkRole');
 
