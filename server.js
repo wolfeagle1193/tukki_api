@@ -635,7 +635,7 @@ app.get('/privacy-policy', (req, res) => {
 
       <h2>9. Contact</h2>
       <p>Pour toute question sur cette politique ou vos données :</p>
-      <p><strong>Email :</strong> support@tukki.app</p>
+      <p><strong>Email :</strong> wolfeagle1193@gmail.com </p>
 
       <h2>10. Modifications</h2>
       <p>Nous pouvons modifier cette politique à tout moment. Les modifications seront affichées sur cette page.</p>
