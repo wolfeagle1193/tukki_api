@@ -14,7 +14,7 @@ const regionServicesRoutes= require('./routes/regionServicesRoutes')
 const excursionRoutes = require('./routes/excursionRoutes');
 const regionDetailsRoutes = require('./routes/regionDetails');
 const servicesRoutes = require('./routes/servicesRoutes');
-const popularPlacesRoutes = require('./routes/popularPlaces');
+const popularPlacesRoutes = require('./routes/PopularPlaces');
 // ✅ NOUVELLE ROUTE HÔTELS DÉTAILLÉS
 const hotelRoutes = require('./routes/hotelRoutes');
 const roomRoutes = require('./routes/roomRoutes');
