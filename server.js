@@ -554,6 +554,112 @@ app.get('/test-timeouts', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+//confidentialite
+
+// ===== ROUTE POLITIQUE DE CONFIDENTIALITÉ =====
+
+app.get('/privacy-policy', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Politique de Confidentialité - Tukki</title>
+      <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        h1 { color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        h2 { color: #555; margin-top: 30px; }
+        .date { color: #666; font-size: 14px; }
+      </style>
+    </head>
+    <body>
+      <h1>📋 Politique de Confidentialité - Tukki</h1>
+      <p class="date">Dernière mise à jour: ${new Date().toLocaleDateString('fr-FR')}</p>
+
+      <h2>1. Introduction</h2>
+      <p>Bienvenue sur Tukki. Nous respectons votre vie privée et nous engageons à protéger vos données personnelles.</p>
+
+      <h2>2. Données Collectées</h2>
+      <p>Tukki collecte les données suivantes :</p>
+      <ul>
+        <li><strong>Authentification :</strong> Email, mot de passe (hashé), ID utilisateur</li>
+        <li><strong>Profil :</strong> Nom, photo de profil, numéro de téléphone (optionnel), adresse (optionnelle)</li>
+        <li><strong>Localisation :</strong> Position GPS pour créer et afficher les trésors</li>
+        <li><strong>Contenu :</strong> Photos de trésors, galeries, commentaires, likes</li>
+        <li><strong>Analytique :</strong> Utilisation de l'app (optionnel)</li>
+      </ul>
+
+      <h2>3. Utilisation des Données</h2>
+      <p>Vos données sont utilisées pour :</p>
+      <ul>
+        <li>Vous permettre d'utiliser Tukki (création de compte, connexion)</li>
+        <li>Afficher vos trésors et régions</li>
+        <li>Traiter vos commentaires et interactions</li>
+        <li>Améliorer l'expérience utilisateur</li>
+        <li>Sécurité et prévention des fraudes</li>
+      </ul>
+
+      <h2>4. Partage des Données</h2>
+      <p><strong>Vos données ne sont pas partagées avec des tiers.</strong></p>
+      <p>Les données publiques (photos, commentaires) sont visibles par les autres utilisateurs de Tukki.</p>
+
+      <h2>5. Sécurité</h2>
+      <p>Vos données sont protégées par :</p>
+      <ul>
+        <li>Chiffrement HTTPS en transit</li>
+        <li>Authentification par JWT tokens</li>
+        <li>Stockage sécurisé sur serveurs Render et MongoDB</li>
+        <li>Mots de passe hashés (jamais stockés en clair)</li>
+      </ul>
+
+      <h2>6. Vos Droits</h2>
+      <p>Vous pouvez :</p>
+      <ul>
+        <li><strong>Accéder à vos données</strong> via votre profil</li>
+        <li><strong>Modifier vos données</strong> dans les paramètres de l'app</li>
+        <li><strong>Supprimer votre compte et toutes vos données</strong> via Paramètres > Supprimer mon compte</li>
+      </ul>
+
+      <h2>7. Suppression du Compte</h2>
+      <p>Pour supprimer votre compte et toutes vos données :</p>
+      <ol>
+        <li>Ouvrez Tukki</li>
+        <li>Allez dans Paramètres > Supprimer mon compte</li>
+        <li>Confirmez la suppression</li>
+      </ol>
+      <p><strong>Attention :</strong> Cette action est irréversible. Toutes vos données seront supprimées.</p>
+
+      <h2>8. Conservation des Données</h2>
+      <p>Vos données sont conservées tant que votre compte existe. Une fois supprimé, toutes les données sont effacées.</p>
+
+      <h2>9. Contact</h2>
+      <p>Pour toute question sur cette politique ou vos données :</p>
+      <p><strong>Email :</strong> support@tukki.app</p>
+
+      <h2>10. Modifications</h2>
+      <p>Nous pouvons modifier cette politique à tout moment. Les modifications seront affichées sur cette page.</p>
+
+      <hr>
+      <p style="text-align: center; color: #666; font-size: 12px;">© 2025 Tukki. Tous droits réservés.</p>
+    </body>
+    </html>
+  `);
+});
+
+// ===== OU AJOUTE AUSSI CETTE ROUTE =====
+
+app.get('/api/privacy-policy', (req, res) => {
+  res.json({
+    title: "Politique de Confidentialité - Tukki",
+    lastUpdated: new Date(),
+    content: "Voir https://tukki-api.onrender.com/privacy-policy"
+  });
+});
+
+
+
+
 
 // Route de test image existante
 app.get('/test-image/:filename', (req, res) => {
