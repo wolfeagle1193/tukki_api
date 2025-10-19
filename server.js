@@ -20,6 +20,7 @@ const hotelRoutes = require('./routes/hotelRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 // ✅ NOUVELLE ROUTE ÉVÉNEMENTS
 const eventRoutes = require('./routes/eventRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 
 const cors = require("cors");
 const path = require("path");
@@ -85,6 +86,7 @@ app.use('/hotels', express.static(path.join(__dirname, 'assets/images/hotels')))
 app.use('/places', express.static(path.join(__dirname, 'assets/images/places')));
 // ✅ NOUVEAU CHEMIN STATIQUE POUR LES ÉVÉNEMENTS
 app.use('/events', express.static(path.join(__dirname, 'assets/images/events')));
+app.use('/api', feedbackRoutes);
 
 // ======= CONFIGURATION MULTER (EXISTANTE + AMÉLIORÉE) =======
 const multerDestination = (req, file, cb) => {
@@ -662,7 +664,6 @@ app.get('/api/privacy-policy', (req, res) => {
 app.get('/feedback', (req, res) => {
   res.sendFile(path.join(__dirname, '../feedback.html'));
 });
-
 
 
 

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback - Tukki</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #FBFEF8 0%, #f0f5ea 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    :root {
+      --primary: #6D9F3D;
+      --green-button: #4B7F2C;
+      --green-profil: #3D550C;
+      --orange: #FD9942;
+      --white: #FFFFFF;
+      --light-gray: #E5E5E5;
+    }
+
+    .container {
+      max-width: 650px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(109, 159, 61, 0.15);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--green-profil) 0%, var(--primary) 100%);
+      color: var(--white);
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .form-container {
+      padding: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: var(--green-profil);
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .required {
+      color: var(--orange);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(109, 159, 61, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .rating-group {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .stars {
+      display: flex;
+      gap: 10px;
+      font-size: 32px;
+    }
+
+    .star {
+      cursor: pointer;
+      color: var(--light-gray);
+      transition: color 0.2s, transform 0.2s;
+      user-select: none;
+    }
+
+    .star:hover,
+    .star.active {
+      color: var(--orange);
+      transform: scale(1.1);
+    }
+
+    .rating-label {
+      font-size: 14px;
+      color: var(--green-profil);
+      min-width: 80px;
+    }
+
+    .category-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .category-option {
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="radio"] {
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      margin-right: 8px;
+    }
+
+    .category-option label {
+      margin: 0;
+      cursor: pointer;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .char-count {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+      text-align: right;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    button {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-submit {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .btn-submit:hover {
+      background: #fd8a2a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(253, 153, 66, 0.3);
+    }
+
+    .btn-reset {
+      background: var(--light-gray);
+      color: #555;
+    }
+
+    .btn-reset:hover {
+      background: #d0d0d0;
+    }
+
+    .btn-submit:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .success-message {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #c3e6cb;
+      text-align: center;
+    }
+
+    .error-message {
+      display: none;
+      background: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #f5c6cb;
+      text-align: center;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .spinner {
+      border: 3px solid var(--light-gray);
+      border-top: 3px solid var(--orange);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 25px;
+      }
+
+      .header {
+        padding: 30px 20px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .category-group {
+        grid-template-columns: 1fr;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .stars {
+        font-size: 28px;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Votre Avis Compte</h1>
+      <p>Aidez-nous à améliorer Tukki en partageant votre feedback</p>
+    </div>
+
+    <div class="form-container">
+      <div class="success-message" id="successMsg">
+        ✓ Merci ! Votre avis a été reçu avec succès.
+      </div>
+      <div class="error-message" id="errorMsg"></div>
+      <div class="loading" id="loadingMsg">
+        <div class="spinner"></div>
+        <p>Envoi en cours...</p>
+      </div>
+
+      <form id="feedbackForm">
+        <!-- Note -->
+        <div class="form-group">
+          <label>Votre Note <span class="required">*</span></label>
+          <div class="rating-group">
+            <div class="stars" id="stars">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <span class="rating-label" id="ratingLabel">Notez...</span>
+          </div>
+          <input type="hidden" id="rating" name="rating" value="0" required>
+        </div>
+
+        <!-- Catégorie -->
+        <div class="form-group">
+          <label>Catégorie <span class="required">*</span></label>
+          <div class="category-group">
+            <div class="category-option">
+              <input type="radio" name="category" value="bug" id="bug">
+              <label for="bug">Bug/Erreur</label>
+            </div>
+            <div class="category-option">
+              <input type="radio" name="category" value="feature" id="feature">
+              <label for="feature">Nouvelle fonction</label>
+            </div>
+            <div class="category-option">
+              <input type="radio" name="category" value="design" id="design">
+              <label for="design">Design/UX</label>
+            </div>
+            <div class="category-option">
+              <input type="radio" name="category" value="performance" id="performance">
+              <label for="performance">Performance</label>
+            </div>
+            <div class="category-option">
+              <input type="radio" name="category" value="autre" id="autre" checked>
+              <label for="autre">Autre</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Titre -->
+        <div class="form-group">
+          <label for="title">Titre du feedback <span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="title" 
+            name="title" 
+            placeholder="Résumé de votre avis"
+            maxlength="100"
+            required
+          >
+        </div>
+
+        <!-- Message -->
+        <div class="form-group">
+          <label for="message">Message détaillé <span class="required">*</span></label>
+          <textarea 
+            id="message" 
+            name="message" 
+            placeholder="Expliquez votre feedback en détail..."
+            maxlength="1000"
+            required
+          ></textarea>
+          <div class="char-count">
+            <span id="charCount">0</span>/1000
+          </div>
+        </div>
+
+        <!-- Email (optionnel) -->
+        <div class="form-group">
+          <label for="email">Email (optionnel)</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Pour que nous vous recontactions si besoin"
+          >
+        </div>
+
+        <!-- Boutons -->
+        <div class="button-group">
+          <button type="submit" class="btn-submit" id="submitBtn">Envoyer votre avis</button>
+          <button type="reset" class="btn-reset">Effacer</button>
+        </div>
+
+        <div class="footer-text">
+          Vos données sont sécurisées et ne seront jamais partagées
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('feedbackForm');
+    const ratingInput = document.getElementById('rating');
+    const stars = document.querySelectorAll('.star');
+    const ratingLabel = document.getElementById('ratingLabel');
+    const messageInput = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+    const loadingMsg = document.getElementById('loadingMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Labels pour les notes
+    const ratingLabels = {
+      1: '😞 Mauvais',
+      2: '😕 Pas mal',
+      3: '😐 Correct',
+      4: '😊 Bien',
+      5: '😍 Excellent'
+    };
+
+    // Étoiles - Sélection de note
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const value = star.dataset.value;
+        ratingInput.value = value;
+        ratingLabel.textContent = ratingLabels[value];
+        
+        stars.forEach(s => {
+          s.classList.remove('active');
+          if (s.dataset.value <= value) {
+            s.classList.add('active');
+          }
+        });
+      });
+
+      star.addEventListener('mouseover', () => {
+        const value = star.dataset.value;
+        stars.forEach(s => {
+          s.style.color = s.dataset.value <= value ? '#FD9942' : '#E5E5E5';
+        });
+      });
+    });
+
+    document.getElementById('stars').addEventListener('mouseleave', () => {
+      stars.forEach(s => {
+        s.style.color = s.classList.contains('active') ? '#FD9942' : '#E5E5E5';
+      });
+    });
+
+    // Compteur de caractères
+    messageInput.addEventListener('input', () => {
+      charCount.textContent = messageInput.value.length;
+    });
+
+    // Soumission du formulaire
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (ratingInput.value === '0') {
+        showError('Veuillez noter l\'application');
+        return;
+      }
+
+      const formData = {
+        rating: parseInt(ratingInput.value),
+        category: document.querySelector('input[name="category"]:checked').value,
+        title: document.getElementById('title').value,
+        message: messageInput.value,
+        email: document.getElementById('email').value || null
+      };
+
+      submitBtn.disabled = true;
+      loadingMsg.style.display = 'block';
+      errorMsg.style.display = 'none';
+      successMsg.style.display = 'none';
+
+      try {
+        const response = await fetch('/api/feedback', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (result.status) {
+          successMsg.style.display = 'block';
+          form.reset();
+          ratingLabel.textContent = 'Notez...';
+          stars.forEach(s => s.classList.remove('active'));
+          ratingInput.value = '0';
+          charCount.textContent = '0';
+          
+          // Masquer le message après 5 secondes
+          setTimeout(() => {
+            successMsg.style.display = 'none';
+          }, 5000);
+        } else {
+          showError(result.message || 'Erreur lors de l\'envoi');
+        }
+      } catch (error) {
+        showError('Impossible de contacter le serveur');
+        console.error('Erreur:', error);
+      } finally {
+        submitBtn.disabled = false;
+        loadingMsg.style.display = 'none';
+      }
+    });
+
+    function showError(message) {
+      errorMsg.textContent = '✗ ' + message;
+      errorMsg.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
