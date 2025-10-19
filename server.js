@@ -659,6 +659,12 @@ app.get('/api/privacy-policy', (req, res) => {
 
 
 
+app.get('/feedback', (req, res) => {
+  res.sendFile(path.join(__dirname, '../feedback.html'));
+});
+
+
+
 
 
 // Route de test image existante
